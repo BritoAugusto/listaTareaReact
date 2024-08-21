@@ -1,10 +1,15 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import Formulario from "./components/Formulario";
 
 function App() {
   return (
     <>
-      <h1>Hola Mundo</h1>
+      <main className="container my-5">
+        <h1>Bienvenido</h1>
+        <h2>Ingresa tus tareas</h2>
+        <Formulario></Formulario>
+      </main>
     </>
   );
 }
