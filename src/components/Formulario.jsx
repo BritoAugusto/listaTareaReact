@@ -29,7 +29,7 @@ setTarea('');
           </Button>
         </Form.Group>
       </Form>
-      <ListaTareas></ListaTareas>
+      <ListaTareas ItemTareas={ItemTareas}></ListaTareas>
     </section>
   );
 };
