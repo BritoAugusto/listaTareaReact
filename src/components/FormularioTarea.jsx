@@ -2,12 +2,21 @@
 // import Form from "react-bootstrap/Form";
 import { Form, Button } from "react-bootstrap";
 import ListaTareas from "./ListaTareas";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 const FormularioTarea = () => {
-const [listaTareas, setListaTareas] = useState([]);
+  const tareasLocalStorage = JSON.parse(localStorage.getItem('tareasKey')) || [];
+const [listaTareas, setListaTareas] = useState(tareasLocalStorage);
 const [tarea, setTarea] = useState("");
+
+//ciclo de vida del componente
+useEffect(()=>{
+  console.log("prueba del ciclo de vida")
+  //guardar en localstorage
+  localStorage.setItem('tareasKey', JSON.stringify(listaTareas))
+}, [listaTareas])
+
 // const tomarTexto = (e)=>{
 //   setTarea(e.target.value);
 // }
