@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
  import "./App.css";
+import FormularioTarea from "./components/FormularioTarea";
 
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
       <main className="container my-5 text-center">
         <h1 className="text-light">Bienvenido</h1>
         <h2 className="text-light">Ingresa tus tareas</h2>
-        
+        <FormularioTarea></FormularioTarea>
       </main>
     </>
   );
