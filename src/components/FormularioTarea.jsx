@@ -1,5 +1,3 @@
-// import Button from "react-bootstrap/Button";
-// import Form from "react-bootstrap/Form";
 import { Form, Button } from "react-bootstrap";
 import ListaTareas from "./ListaTareas";
 import { useState, useEffect } from "react";
@@ -8,36 +6,21 @@ import { useForm } from "react-hook-form";
 
 
 const FormularioTarea = () => {
-  const tareasLocalStorage = JSON.parse(localStorage.getItem('tareasKey')) || [];
-const [listaTareas, setListaTareas] = useState(tareasLocalStorage);
-const [tarea, setTarea] = useState("");
+
 const {register, handleSubmit, formState:{errors}, reset} = useForm();
 
-//ciclo de vida del componente
-useEffect(()=>{
-  console.log("prueba del ciclo de vida")
-  //guardar en localstorage
-  localStorage.setItem('tareasKey', JSON.stringify(listaTareas))
-}, [listaTareas])
 
-// const tomarTexto = (e)=>{
-//   setTarea(e.target.value);
-// }
+useEffect(()=>{
+
+}, [])
+
+
 
 const onSubmit = (data)=>{
-console.log(data)
-//guardar la tarea en listaTareas
-//operador spread ...
-setListaTareas([...listaTareas, data.tarea])
-reset();
+
 }
 
-const borrarTarea = (nombreTarea)=>{
-//listaTareas.splice();
- const tareasFiltradas = listaTareas.filter((item)=> item !== nombreTarea )
-//actualizar el state 
-setListaTareas(tareasFiltradas)
-}
+
 
   return (
     <section>
@@ -56,7 +39,7 @@ setListaTareas(tareasFiltradas)
         </Form.Group>
         <Form.Text className="text-danger">{errors.tarea?.message}</Form.Text>
       </Form>
-      <ListaTareas listaTareas = {listaTareas} borrarTarea = {borrarTarea}></ListaTareas>
+      <ListaTareas></ListaTareas>
     </section>
   );
 };
