@@ -47,7 +47,7 @@ setListaTareas(tareasFiltradas)
             type="text"
             placeholder="agrega una tarea"
             {...register("tarea", {required:"La tarea es un dato obligatorio", minLength:{value:3, message:"La tarea debe contener como mínimo 3 caracteres"}, maxLength:{
-              value:15,
+              value:100,
               message: "La tarea como máximo debe contener 15 caracteres"
             }})}/>
           <Button variant="primary" type="submit">
