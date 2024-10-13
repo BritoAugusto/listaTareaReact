@@ -10,37 +10,7 @@ import { Button, Form } from "react-bootstrap";
 
 const FormularioTarea = () => {
   const [listaTareas, setListaTareas] = useState([]);
-
-  useEffect(() => {
-    obtenerTareas();
-  }, []);
-
-  const obtenerTareas = async () => {
-    const datos = await leerTareasApi();
-    if(datos){
-      const listadoTareas = await datos.json();
-      console.log("Listado de tareas", listaTareas)
-      setListaTareas(listadoTareas);
-    }
-  };
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
-
-  const onSubmit = async (tarea) => {
-    const nuevaTarea = await crearTareaApi(tarea); 
-    if (nuevaTarea) {     
-      setListaTareas([...listaTareas, nuevaTarea]);
-      reset(); 
-    } else {
-      console.error("No se pudo crear la tarea.");
-    }
-  };
-
+  
   const eliminarTarea = useCallback(
     async (tarea) => {
       await borrarTareaApi(tarea._id)
@@ -49,6 +19,37 @@ setListaTareas(filtrarTareas)
     },
     [listaTareas]
   )
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  useEffect(() => {
+    obtenerTareas()
+  }, []);
+
+  const obtenerTareas = async () => {
+    const respuesta = await leerTareasApi();
+    if(respuesta){
+      const listadoTareas = await respuesta.json();
+      setListaTareas(listadoTareas);
+    }
+  };
+
+
+  const onSubmit = async (tarea) => {
+    const nuevaTarea = await crearTareaApi(tarea); 
+    if (nuevaTarea) {     
+      setListaTareas((tareasPrevias)=>[...tareasPrevias, nuevaTarea]);
+      reset(); 
+    } else {
+      console.error("No se pudo crear la tarea.");
+    }
+  };
+
 
   return (
     <section>
@@ -77,7 +78,6 @@ setListaTareas(filtrarTareas)
       </Form>
       <ListaTareas
         listaTareas={listaTareas}
-        // setListaTareas={setListaTareas}
         eliminarTarea={eliminarTarea}
       ></ListaTareas>
     </section>

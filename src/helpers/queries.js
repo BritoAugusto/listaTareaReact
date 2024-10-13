@@ -24,7 +24,6 @@ export const crearTareaApi = async (nuevaTarea) => {
     throw new Error(`Error ${respuesta.status}: No se pudo crear la tarea`) 
    }
    const tareaCreada = await respuesta.json()
-   console.log('tarea creada:', tareaCreada)
    return tareaCreada;
   } catch (error) {
     console.error(error);
