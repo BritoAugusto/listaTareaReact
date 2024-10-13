@@ -1,5 +1,5 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import ItemTarea from "./ItemTarea";
+import ItemTarea from "./ItemTarea.jsx";
 
 
 

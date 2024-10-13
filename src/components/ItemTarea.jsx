@@ -2,7 +2,7 @@ import { Button, ListGroup } from "react-bootstrap";
 import { borrarTareaApi } from "../helpers/queries.js";
 
 const ItemTarea = ({tarea, fila, setListaTareas}) => {
-console.log(tarea)
+console.log(tarea.tarea)
   const borrarTarea = async()=>{
     const respuesta = await borrarTareaApi(tarea._id)
     if(respuesta.status === 200){
@@ -13,7 +13,7 @@ console.log(tarea)
   }
 
   return (
-    <ListGroup.Item key={tarea._id} className="d-flex justify-content-between">
+    <ListGroup.Item className="d-flex justify-content-between">
       {fila} -{tarea.tarea}
       <Button variant="danger" onClick={borrarTarea}>
         Borrar

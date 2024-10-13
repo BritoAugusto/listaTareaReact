@@ -3,7 +3,7 @@ const URLTarea = import.meta.env.VITE_API_TAREA;
 export const leerTareasApi = async () => {
   try {
     const respuesta = await fetch(URLTarea);
-    const datos = await respuesta.json()
+     const datos = await respuesta.json()
     return datos
   } catch (error) {
     console.error(error);
@@ -20,6 +20,9 @@ export const crearTareaApi = async (tareaNueva) => {
       },
       body: JSON.stringify(tareaNueva),
     })
+    if (!respuesta.ok) {
+      throw new Error("Error al crear tarea")
+    }
     return await respuesta.json()
   } catch (error) {
     console.error(error);

@@ -1,38 +1,27 @@
 import { Form, Button } from "react-bootstrap";
-import ListaTareas from "./ListaTareas";
-import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { crearTareaApi, leerTareasApi } from "../helpers/queries.js";
+import { crearTareaApi } from "../helpers/queries.js";
 
 
 
-const FormularioTarea = () => {
-   const [listaTareas, setListaTareas] = useState([]);
+const FormularioTarea = ({agregarTarea}) => {
+   
 
 
 const {register, handleSubmit, formState:{errors}, reset} = useForm();
 
 
-useEffect(()=>{
-obtenerTareas();
-}, [])
 
- const obtenerTareas = async () => {
-   const datos = await leerTareasApi();
-   if (Array.isArray(datos) && datos.length > 0) {
-     setListaTareas(datos);
-   } else {
-     console.log("Error al obtener tareas");
-   }
- };
+
 
 
 const onSubmit = async (tarea)=>{
-const respuesta = await crearTareaApi(tarea)
-if(respuesta.status === 201){
-  const tareaCreada = await respuesta.json()
-  setListaTareas((prevTareas) => [...prevTareas, tareaCreada]);
+const nuevaTarea = await crearTareaApi(tarea);
+if (nuevaTarea && nuevaTarea._id) {
+  agregarTarea(nuevaTarea);
   reset()
+}else{
+  console.error("error al crear la tarea", nuevaTarea)
 }
 }
 
@@ -54,7 +43,7 @@ if(respuesta.status === 201){
         </Form.Group>
         <Form.Text className="text-danger">{errors.tarea?.message}</Form.Text>
       </Form>
-      <ListaTareas listaTareas={listaTareas} setListaTareas={setListaTareas}></ListaTareas>
+      
     </section>
   );
 };
