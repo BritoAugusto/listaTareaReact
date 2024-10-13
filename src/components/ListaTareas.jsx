@@ -3,16 +3,16 @@ import ItemTarea from "./ItemTarea.jsx";
 
 
 
-const ListaTareas = ({listaTareas, setListaTareas}) => {
+const ListaTareas = ({listaTareas, eliminarTarea}) => {
 
   return (
     <ListGroup>
       {listaTareas.map((tarea, posicionTarea) => (
         <ItemTarea
-          key={tarea._id}
+          key={tarea._id || posicionTarea}
           tarea={tarea}
           fila={posicionTarea +1}
-          setListaTareas={setListaTareas}
+          eliminarTarea={eliminarTarea}
         ></ItemTarea>
       ))}
     </ListGroup>

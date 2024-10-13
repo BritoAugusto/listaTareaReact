@@ -3,40 +3,43 @@ const URLTarea = import.meta.env.VITE_API_TAREA;
 export const leerTareasApi = async () => {
   try {
     const respuesta = await fetch(URLTarea);
-     const datos = await respuesta.json()
-    return datos
+    return respuesta
   } catch (error) {
     console.error(error);
     return false;
   }
 };
 
-export const crearTareaApi = async (tareaNueva) => {
+export const crearTareaApi = async (nuevaTarea) => {
   try {
     const respuesta = await fetch(URLTarea, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(tareaNueva),
+      body: JSON.stringify(nuevaTarea),
     })
-    if (!respuesta.ok) {
-      throw new Error("Error al crear tarea")
-    }
-    return await respuesta.json()
+
+   if(!respuesta.ok){
+    throw new Error(`Error ${respuesta.status}: No se pudo crear la tarea`) 
+   }
+   const tareaCreada = await respuesta.json()
+   console.log('tarea creada:', tareaCreada)
+   return tareaCreada;
   } catch (error) {
     console.error(error);
     return false;
   }
 };
 
-export const borrarTareaApi = async (id) => {
+export const borrarTareaApi = async (_id) => {
   try {
-    const respuesta = await fetch(URLTarea+"/"+id, {
+    const respuesta = await fetch(`${URLTarea}/${_id}`, {
       method: "DELETE",
     });
-    return respuesta;
-
+  console.log(respuesta)
+    return respuesta
+    
   } catch (error) {
     console.error(error);
     return false;
