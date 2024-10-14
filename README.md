@@ -10,7 +10,7 @@ Bienvenido al proyecto **Lista de Tareas**, donde podrás gestionar tareas de ma
 
 Este proyecto está desplegado en **Netlify** y es accesible a través del siguiente enlace:
 
-[Visita el proyecto en Netlify]()
+[Visita el proyecto en Netlify](https://listadetareas-c102i.netlify.app/)
 
 ## 🛠️ Tecnologías Utilizadas
 
